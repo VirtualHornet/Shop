@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 function Electronics (){
 
@@ -29,6 +30,12 @@ function Electronics (){
 
 
     return(
+    <motion.div
+        animate= {{opacity:1}}
+        initial = {{opacity:0}}
+        exit={{opacity:0}}
+        transition={{duration:0.5}}
+      > 
         <Container>
         <Content>
             <Filter>
@@ -41,7 +48,7 @@ function Electronics (){
                 {(electro.length>0)?electro.map(item=>{
                 return(
                     <Card key={item.id}>
-                        <StyledLink to={'/product/'+item.id}>
+                        <StyledLink to={'/Shop/product/'+item.id}>
                         <img src={item.image} alt="img"/>
                         <h3>{item.title}</h3>
                         <Bolt>{item.price} $</Bolt>
@@ -53,6 +60,7 @@ function Electronics (){
             </Row>
         </Content>
     </Container>
+    </motion.div>
     )
 }
 
@@ -105,7 +113,7 @@ const Card = styled.div`
         }
     }
 `
-const Filter = styled.h2`
+const Filter = styled.h3`
     display: flex;
     text-align: left;
     margin-left: 2%;

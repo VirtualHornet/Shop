@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { useEffect, useState } from "react";
+import {motion} from'framer-motion';
 
 function Home (){
 
@@ -18,7 +19,12 @@ function Home (){
     }
 
 
-    return(
+    return( <motion.div
+        animate= {{opacity:1}}
+        initial = {{opacity:0}}
+        exit={{opacity:0}}
+        transition={{duration:0.5}}
+      > 
         <Container>
             <Dark>
                 <Content>
@@ -30,8 +36,8 @@ function Home (){
                     aliquam blandit tempor imperdiet arcu arcu ut nunc in dictum mauris at ut.
                     </p>
                     <Buttons>
-                        <Link to="/men"><button>Shop Men</button></Link>
-                        <Link to="/women"><button>Shop Women</button></Link>
+                        <Link to="/Shop/men"><button>Shop Men</button></Link>
+                        <Link to="/Shop/women"><button>Shop Women</button></Link>
                     </Buttons>
                 </Content>
             </Dark>
@@ -56,9 +62,9 @@ function Home (){
                     {data.map(item=>{
                         if(item.id%3===0){
                         return(
-                            <SplideSlide>
-                                <Card key={item.id}>
-                                    <StyledLink to={"/product/"+item.id}>
+                            <SplideSlide key={item.id}>
+                                <Card >
+                                    <StyledLink to={"/Shop/product/"+item.id}>
                                         <img src={item.image} alt="img" />
                                         <h3>{item.title}</h3>
                                     </StyledLink>
@@ -74,14 +80,15 @@ function Home (){
                     <h2>Better for People & the Planet</h2>
                     <p>Ut eget at et aliquam sit quis nisl, pharetra et ac pharetra est dictum in vulputate</p>
                     <Row> 
-                        <Link to="/men"><button>Shop Men</button></Link>
-                        <Link to="/women"><button>Shop Women</button></Link>
+                        <Link to="/Shop/men"><button>Shop Men</button></Link>
+                        <Link to="/Shop/women"><button>Shop Women</button></Link>
                     </Row>
                    
                   
                 </Image>
             </Dark>
         </Container>
+        </motion.div>
     )
 }
 

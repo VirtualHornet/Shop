@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import {GiPadlockOpen} from 'react-icons/gi';
+import { motion } from "framer-motion";
 
 
 
@@ -25,7 +26,6 @@ function CheckOut(){
     const getShop=()=>{
         const data = JSON.parse(localStorage.getItem('shop'));
         setShop(data);
-        console.log(shop)
     }
     const getData=async()=>{
         const api = await fetch("https://fakestoreapi.com/products/");
@@ -34,7 +34,14 @@ function CheckOut(){
         
     }   
 
-    return(<Wrapper>
+    return(
+    <motion.div
+        animate= {{opacity:1}}
+        initial = {{opacity:0}}
+        exit={{opacity:0}}
+        transition={{duration:0.5}}
+      > 
+    <Wrapper>
       <Container>
         <h1>CheckOut</h1>
         <Contant>
@@ -93,6 +100,7 @@ function CheckOut(){
         </Contant>
       </Container>
     </Wrapper>
+    </motion.div>
     )
 }
 const StyledRow= styled.div`

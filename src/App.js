@@ -3,14 +3,19 @@ import Nav from "./Components/Nav";
 import Pages from "./Components/Pages";
 import Footer from "./Components/Footer";
 
+
 function App() {
   return (
     <div className="App">
+    
       <BrowserRouter>
-        <Nav/>
+         <Nav/>
         <Pages/>
         <Footer />
-      </BrowserRouter>
+        </BrowserRouter>
+      
+       
+      
     
     </div>
   );

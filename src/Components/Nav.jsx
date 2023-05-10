@@ -28,25 +28,25 @@ function Nav() {
 
     return(
         <List> 
-            <Logo to="/">
+            <Logo to="/Shop/">
                 CLOTHES SHOP
             </Logo>
             <ul> 
-                <StyledNavLink to="/men">
+                <StyledNavLink to="/Shop/men">
                     Men
                 </StyledNavLink>
-                <StyledNavLink to="/women">
+                <StyledNavLink to="/Shop/women">
                     Women
                 </StyledNavLink>
-                <StyledNavLink to="/electronics">
+                <StyledNavLink to="/Shop/electronics">
                     Electonics
                 </StyledNavLink>
-                <StyledNavLink to="/jewelery">
+                <StyledNavLink to="/Shop/jewelery">
                     Jewelery
                 </StyledNavLink>
             </ul>
             <Right>
-                <StyledNavLink to="/cart">
+                <StyledNavLink to="/Shop/cart">
                     <FaShoppingCart />
                     <Index>{sum}</Index>
                 </StyledNavLink>  

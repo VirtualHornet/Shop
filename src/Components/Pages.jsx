@@ -11,14 +11,14 @@ import CheckOut from '../Pages/CheckOut';
 function Pages (){
     return(
         <Routes>
-            <Route path="/" element={<Home/>}>Clothes Shop</Route>
-            <Route path="/men" element={<Men/>}>Men</Route>
-            <Route path="/women" element={<Women/>}>Women</Route>
-            <Route path="/electronics" element={<Electronics/>}>Electronics</Route>
-            <Route path="/jewelery" element={<Jewelery/>}>Jewelery</Route>
-            <Route path="/product/:id" element={<Products/>}>Product</Route>
-            <Route path="/cart" element={<Cart/>}>Cart</Route>
-            <Route path="/checkOut" element={<CheckOut/>}>CheckOut</Route>
+            <Route path="/Shop/" element={<Home/>}></Route>
+            <Route path="/Shop/men" element={<Men/>}></Route>
+            <Route path="/Shop/women" element={<Women/>}></Route>
+            <Route path="/Shop/electronics" element={<Electronics/>}></Route>
+            <Route path="/Shop/jewelery" element={<Jewelery/>}></Route>
+            <Route path="/Shop/product/:id" element={<Products/>}></Route>
+            <Route path="/Shop/cart" element={<Cart/>}></Route>
+            <Route path="/Shop/checkOut" element={<CheckOut/>}></Route>
 
 
 

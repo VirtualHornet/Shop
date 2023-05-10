@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineStar } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 function Jewelery(){     
     
@@ -28,7 +29,12 @@ function Jewelery(){
 
 
     return(
-        
+    <motion.div
+        animate= {{opacity:1}}
+        initial = {{opacity:0}}
+        exit={{opacity:0}}
+        transition={{duration:0.5}}
+      >     
     <Container>
         <Content>
             <Filter>
@@ -41,7 +47,7 @@ function Jewelery(){
                 {(jew.length>0)?jew.map(item=>{
                 return(
                     <Card key={item.id}>
-                        <StyledLink to={'/product/'+item.id}>
+                        <StyledLink to={'/Shop/product/'+item.id}>
                             <img src={item.image} alt="img"/>
                             <h3>{item.title}</h3>
                             <Bolt>{item.price} $</Bolt>
@@ -53,7 +59,7 @@ function Jewelery(){
             </Row>
         </Content>
     </Container>
-          
+    </motion.div>
        
     )
 }

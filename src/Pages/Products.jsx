@@ -5,6 +5,7 @@ import {FaCcVisa, FaCcMastercard, FaCcDiscover} from 'react-icons/fa';
 import {SiAmericanexpress} from 'react-icons/si';
 import {BsFillArrowLeftSquareFill, BsFillArrowRightSquareFill} from 'react-icons/bs';
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Products (){
     const param = useParams();
@@ -17,8 +18,7 @@ function Products (){
 
     useEffect(()=>{
         getData(id);
-        navigate('/product/'+id); 
-        console.log(product)
+        navigate('/Shop/product/'+id); 
     },[id])
 
     const saveCart =()=>{
@@ -33,7 +33,6 @@ function Products (){
              let arr = [...existingObj1];
             arr.forEach((obj)=>{
                 if(obj.id === id){
-                    console.log(obj.key)
                     obj.num += num;
                     found = true;
                 }
@@ -55,6 +54,12 @@ function Products (){
     }
 
     return(
+        <motion.div
+        animate= {{opacity:1}}
+        initial = {{opacity:0}}
+        exit={{opacity:0}}
+        transition={{duration:0.5}}
+      > 
         <Container>
             <Content>
                 <Row>
@@ -63,7 +68,7 @@ function Products (){
                     </Col>
                     <Col>
                         <Green>
-                            <Link to={"/"+product.category}>
+                            <Link to={(product.category==="women's clothing")?"/Shop/women":(product.category==="men's clothing")?"/Shop/men":"/Shop/"+product.category}>
                             {product.category}
                             </Link>
                             <ArrowContainer>
@@ -77,7 +82,7 @@ function Products (){
                             </ArrowContainer>
                         </Green>
                         <div>
-                            <h2>{product.title}</h2>
+                            <h3>{product.title}</h3>
                         </div>
                         <Price>
                             <span>${product.price}</span> & Free Shipping
@@ -97,7 +102,7 @@ function Products (){
                                 saveCart(); 
                                 navigate2("/cart")}}>ADD TO CART</Add>
                         </div>
-                        <Cat>Category:  <Link to={"/"+product.category}>
+                        <Cat>Category:  <Link to={(product.category==="women's clothing")?"/Shop/women":(product.category==="men's clothing")?"/Shop/men":"/Shop/"+product.category}>
                             {product.category}
                             </Link></Cat>
                         <CheckContainer>
@@ -110,6 +115,7 @@ function Products (){
                 </Row>
             </Content>
         </Container>
+        </motion.div>
     )
 }
 

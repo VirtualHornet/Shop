@@ -1,23 +1,19 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import {CiCircleRemove} from"react-icons/ci";
+import { motion } from "framer-motion";
 function Cart (){ 
-    const param = useParams();
     const [shop, setShop] = useState([]);
-    
-   
-    const [id ,setID] = useState(Number(param.id));
 
     const [product, setProduct] = useState([]);
 
-    const navigate = useNavigate();
    
     
 
     useEffect(()=>{ 
         getData();
-        getShop(); console.log(shop)
+        getShop(); 
     }, [])
 
     const getData=async()=>{
@@ -29,7 +25,7 @@ function Cart (){
     const getShop=()=>{
         const data = JSON.parse(localStorage.getItem('shop'));
         setShop(data);
-        console.log(shop)
+        
     }
     function increaseNum(id) {
         setShop(shop.map(item => {
@@ -59,7 +55,7 @@ function Cart (){
       }, 0);
     const saveData = ()=>{
         localStorage.setItem('shop', JSON.stringify(shop));
-        console.log("save")
+       
     }  
 
     const removeProduct=(e)=>{
@@ -82,7 +78,14 @@ function Cart (){
         window.location.reload();
     }
 
-    return(<Wrapper>
+    return(
+        <motion.div
+        animate= {{opacity:1}}
+        initial = {{opacity:0}}
+        exit={{opacity:0}}
+        transition={{duration:0.5}}
+      > 
+    <Wrapper>
         <Div>
         <h1>Cart</h1>  
         <Container> 
@@ -102,11 +105,11 @@ function Cart (){
             <tbody>
            
         
-            {(product.length>0)?shop.map(item=>{
+            {(product.length>0&& shop.length>0)?shop.map(item=>{
             return(<tr key={item.id}>
                
-                <td><Link to={"/product/"+item.id}><img src={product[item.id-1].image} alt="img" /></Link></td>
-                <td><StyledLink to={"/product/"+item.id}>{product[item.id-1].title}</StyledLink></td>
+                <td><Link to={"/Shop/product/"+item.id}><img src={product[item.id-1].image} alt="img" /></Link></td>
+                <td><StyledLink to={"/Shop/product/"+item.id}>{product[item.id-1].title}</StyledLink></td>
                 <td>${product[item.id-1].price}</td>
              <td>
             <div>
@@ -122,7 +125,7 @@ function Cart (){
             <td>${item.num*product[item.id-1].price}</td>
               <Remove><CiCircleRemove onClick={()=>removeProduct(item.id)}/> </Remove>
             </tr>
-            )}):"No Product selected"}
+            )}):<tr><td>No Product selected</td></tr>}
         </tbody>
         </table>
 
@@ -142,7 +145,7 @@ function Cart (){
                     <td><span>${(product.length>0)?sum:""}</span></td>
                 </tr>
                 <tr>
-                    <td><Link to="/checkOut" onClick={()=>saveData()}><Proceed>Proceed to checkout</Proceed></Link></td>
+                    <td><Link to="/Shop/checkOut" onClick={()=>saveData()}><Proceed>Proceed to checkout</Proceed></Link></td>
                 </tr>
             </tbody>
         </table>
@@ -151,6 +154,7 @@ function Cart (){
         </Container> 
         </Div>
     </Wrapper>
+    </motion.div>
     )
 }
 const Wrapper= styled.div`

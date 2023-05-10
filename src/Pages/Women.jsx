@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 import {AiOutlineStar} from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Women (){
 
@@ -10,12 +11,10 @@ function Women (){
         const check = localStorage.getItem("women");
         if(check){
             setManClothes(JSON.parse(check));
-            console.log("az")
         }else{
             const api = await fetch("https://fakestoreapi.com/products/category/women's%20clothing")
             const data = await api.json();
             localStorage.setItem("women", JSON.stringify(data));
-            console.log("ez")
             setManClothes(data);
         }
         
@@ -30,6 +29,12 @@ function Women (){
 
 
     return(
+    <motion.div
+        animate= {{opacity:1}}
+        initial = {{opacity:0}}
+        exit={{opacity:0}}
+        transition={{duration:0.5}}
+      >     
         <Container>
             <Content>
                 <Filter>
@@ -42,7 +47,7 @@ function Women (){
                     {(manClothes.length>0)?manClothes.map(item=>{
                     return(
                         <Card key={item.id}>
-                              <StyledLink to={'/product/'+item.id}>
+                              <StyledLink to={'/Shop/product/'+item.id}>
                             <img src={item.image} alt="img"/>
                             <h3>{item.title}</h3>
                             <Bolt>{item.price} $</Bolt>
@@ -54,6 +59,7 @@ function Women (){
                 </Row>
             </Content>
         </Container>
+    </motion.div>    
     )
 }
 

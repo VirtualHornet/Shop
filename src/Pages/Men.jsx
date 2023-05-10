@@ -2,25 +2,23 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import {AiOutlineStar} from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Men (){
 
     const [manClothes, setManClothes] = useState({});
     useEffect(()=>{
         getClothes();
-        console.log(manClothes);
     },[]);
 
     const getClothes=async () =>{
         const check = localStorage.getItem("men");
         if(check){
             setManClothes(JSON.parse(check));
-            console.log("az")
         }else{
             const api = await fetch("https://fakestoreapi.com/products/category/men's%20clothing")
             const data = await api.json();
             localStorage.setItem("men", JSON.stringify(data));
-            console.log("ez")
             setManClothes(data);
         }
         
@@ -31,6 +29,12 @@ function Men (){
 
 
     return(
+        <motion.div
+        animate= {{opacity:1}}
+        initial = {{opacity:0}}
+        exit={{opacity:0}}
+        transition={{duration:0.5}}
+      > 
         <Container>
             <Content>
                 <Filter>
@@ -43,7 +47,7 @@ function Men (){
                     {(manClothes.length>0)?manClothes.map(item=>{
                     return(
                         <Card key={item.id}>
-                            <StyledLink to={'/product/'+item.id}>
+                            <StyledLink to={'/Shop/product/'+item.id}>
                             <img src={item.image} alt="img"/>
                             <h3>{item.title}</h3>
                             <Bolt>{item.price} $</Bolt>
@@ -55,6 +59,7 @@ function Men (){
                 </Row>
             </Content>
         </Container>
+    </motion.div>    
     )
 }
 
