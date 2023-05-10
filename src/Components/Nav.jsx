@@ -16,13 +16,13 @@ function Nav() {
         setShop(data);
     }
 
-    const sum = shop.reduce((accumulator, currentItem) => {
+    const sum = (shop.length>0)?shop.reduce((accumulator, currentItem) => {
         if(shop.length>0){
               return (accumulator + (currentItem.num))
         }else{
             return "";
         } 
-    },0);
+    },0):"";
 
     return(
         <List> 
