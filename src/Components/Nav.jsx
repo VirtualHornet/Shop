@@ -13,7 +13,9 @@ function Nav() {
 
     const getShop = ()=>{
         const data = JSON.parse(localStorage.getItem('shop'));
-        setShop(data);
+        if(data){
+             setShop(data);
+        }
     }
 
     const sum = (shop.length>0)?shop.reduce((accumulator, currentItem) => {
