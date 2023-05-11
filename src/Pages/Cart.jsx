@@ -142,7 +142,7 @@ function Cart (){
             <tbody>
                 <tr>
                     <td>Total</td>
-                    <td><span>${(product.length>0)?sum:""}</span></td>
+                    <td><span>${(shop.length>0)?sum:""}</span></td>
                 </tr>
                 <tr>
                     <td><Link to="/Shop/checkOut" onClick={()=>saveData()}><Proceed>Proceed to checkout</Proceed></Link></td>

@@ -100,7 +100,7 @@ function Products (){
                             >+</Button>
                             <Add onClick={()=>{   
                                 saveCart(); 
-                                navigate2("/cart")}}>ADD TO CART</Add>
+                                navigate2("/Shop/cart")}}>ADD TO CART</Add>
                         </div>
                         <Cat>Category:  <Link to={(product.category==="women's clothing")?"/Shop/women":(product.category==="men's clothing")?"/Shop/men":"/Shop/"+product.category}>
                             {product.category}

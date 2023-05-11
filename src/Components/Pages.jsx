@@ -20,11 +20,6 @@ function Pages (){
             <Route path="/Shop/cart" element={<Cart/>}></Route>
             <Route path="/Shop/checkOut" element={<CheckOut/>}></Route>
 
-
-
-
-
-
         </Routes>
     )
 }
